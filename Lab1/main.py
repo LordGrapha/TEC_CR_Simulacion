@@ -18,26 +18,26 @@ def askValues():
     return resultado
 
 #main driver
+#All the credits
 printAuthors()
+#Ask for sides, quantity of dice rolls per turn and how many experiments
 input = askValues()
-print(input)
-simulator = Simulator(pC=5, pN=10, pK=100)
-listaConteo= simulator.startSimulation()
-"""
-Formato JSON
-{
-    sumaDeNumeros(int): cantidadApariciones(int)
-}
-"""
+#Just out Simulator logic object that contains all the logic
+simulator = Simulator(pC=input[0], pN=input[1], pK=input[2])
 
-stubSimulation = {
-    7: 4,
-    5: 2,
-    1: 3,
-    12: 6
-}
+#Simulation begins!
+simulationHash = simulator.startSimulation()
+
+listaX = []     #x-axis, all the sum values for each experiment
+listaY = []     #y-axis, all the appearances for each sum value per experiment
+#Create x-axis and y-axis for the bars plot
+for key, value in simulationHash.items():
+    listaX.append(key)
+    listaY.append(value)
+
+print("Eje X:\nSumatoria de valores por experimento\n\t", str(listaX))
+print("Eje Y:\nApariciones de cada sumatoria:\n\t", str(listaY)) 
+
 
 #Hacer la grafica de barras con el diccionario que viene del Simulador con las cantidades 
 # de apariciones
-
-
