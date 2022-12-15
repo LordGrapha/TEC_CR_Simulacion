@@ -1,4 +1,5 @@
 from logic.Simulator import Simulator
+from matplotlib import pyplot
 
 def printAuthors():
     print("_____________________________________________________________\n")
@@ -16,7 +17,7 @@ def askValues():
     print("Por favor, ingrese los datos para la simulacion.\n")
     while invalidOption:
         try:
-            print("C = Caras, elija la cantidad de caras que desea en su dado poliedro regular:")
+            print("Elija la cantidad de caras que desea en su dado poliedro regular:")
             print("1- 4 caras")
             print("2- 6 caras")
             print("3- 8 caras")
@@ -26,14 +27,15 @@ def askValues():
             if option < 1 or option > 5:
                 raise InterruptedError()
             resultado.append(optionsMap[option])
-            print("N = Numero de veces que se lanza el dado: ")
+            print("Numero de veces que se lanza el dado: ")
             resultado.append(int(input()))
-            print("K = Experimentos: ")
+            print("Numero de experimentos: ")
             resultado.append(int(input()))
             invalidOption = False
         except:
             print("\nRespuesta invalida, por favor ingrese solo numeros o una opcion del menu valida\n")
             resultado.clear()
+            print(resultado)
     return resultado
 
 #main driver
@@ -57,6 +59,22 @@ for key, value in simulationHash.items():
 print("Eje X:\nSumatoria de valores por experimento\n\t", str(listaX))
 print("Eje Y:\nApariciones de cada sumatoria:\n\t", str(listaY)) 
 
+#Make the bar graph with the dictionary that comes from the Simulator with the amounts of appearances
 
-#Hacer la grafica de barras con el diccionario que viene del Simulador con las cantidades 
-# de apariciones
+# The number of times a number appears
+
+def graficabarras():
+
+    #colores = ["blue", "red", "green"]
+    pyplot.title("Cantidad de veces que aparece un número")
+    pyplot.bar(listaX,height=listaY)
+    pyplot.ylabel("Todas las apariciones")
+    pyplot.xlabel("Todas las sumatorias")
+    #pyplot.show()
+    pyplot.savefig("test.png")
+
+graficabarras()
+
+
+
+
