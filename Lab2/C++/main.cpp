@@ -1,21 +1,21 @@
 // C++ program to demonstrate
 // the use of rand()
-#include <cstdlib>
 #include <iostream>
+#include <fstream>
 #include <string.h>
-
-using namespace std;
 
 int main()
 {
     //to_string(d); es para convertir de double a string
-    const int random_limit = 10000;
-    double listaRandoms[random_limit];
-    ofstream cRandom;
-    cRandomFile.open("cRandom.txt");
-	for (int i = 0; i < random_limit; i++)
-        int random = rand() % random_limit;
-        cRandomFile << to_string(random / random_limit);
+    int random_limit = 10*15;
+    std::fstream cRandomFile;
+    std::string allNumbers = "";
+    cRandomFile.open("cRandom.txt", std::ios::out);
+	for (int i = 0; i < random_limit; i++){
+        float random = rand() % random_limit;
+        random = random/10.0*15.0;
+        cRandomFile << std::to_string(random) << " ";
+    }
     cRandomFile.close();
 	return 0;
 }
